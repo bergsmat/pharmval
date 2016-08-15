@@ -137,7 +137,7 @@ as.pharmval.NULL <- function(x,...){
     VALUE = numeric(0),
     VALUEC = numeric(0),
     UNIT = character(0),
-    NAME = character(0),
+    VARIABLE = character(0),
     DURATION = numeric(0),
     ULOQ = numeric(0),
     LLOQ = numeric(0),
