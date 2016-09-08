@@ -19,7 +19,7 @@ as.pharmevent <- function(x = NULL, ...)UseMethod('as.pharmevent')
 #' @export
 #' @return pharmevent
 #' @examples
-#' as.pharmvevent()
+#' as.pharmevent()
 
 as.pharmevent.NULL <- function(x,...){
   x <- data.frame(
@@ -113,7 +113,23 @@ as.pharmval <- function(x = NULL, ...)UseMethod('as.pharmval')
 as.pharmval.NULL <- function(x,...){
   x <- data.frame(
     stringsAsFactors = FALSE,
+    VARIABLE = character(0),
     USUBJID = character(0),
+    TIME = numeric(0),
+    REPEATED = numeric(0),
+    TYPE = numeric(0),
+    TYPEC = character(0),
+    SUBTYPE = numeric(0),
+    SUBTYPEC = character(0),
+    VALUE = numeric(0),
+    VALUEC = numeric(0),
+    UNIT = character(0),
+    DATE = character(0),
+    CLOCK = character(0),
+    NOMTIME = numeric(0),
+    TIMEUNIT = character(0),
+    EXCLUDED = character(0),
+    IMPUTED = character(0),
     STUDY = numeric(0),
     CENTER = numeric(0),
     SUBJECT = numeric(0),
@@ -126,27 +142,12 @@ as.pharmval.NULL <- function(x,...){
     VISITC = character(0),
     BASE = numeric(0),
     SCREEN = numeric(0),
-    DATE = character(0),
-    CLOCK = character(0),
-    NOMTIME = numeric(0),
-    TIME = numeric(0),
-    TIMEUNIT = character(0),
-    TYPE = numeric(0),
-    TYPEC = character(0),
-    SUBTYPE = numeric(0),
-    VALUE = numeric(0),
-    VALUEC = numeric(0),
-    UNIT = character(0),
-    VARIABLE = character(0),
-    DURATION = numeric(0),
     ULOQ = numeric(0),
     LLOQ = numeric(0),
     ROUTE = character(0),
+    DURATION = numeric(0),
     INTERVAL = numeric(0),
-    ADDLDOSE = integer(0),
-    REPEATED = numeric(0),
-    EXCLUDED = character(0),
-    IMPUTED = character(0)
+    ADDLDOSE = integer(0)
   )
   class(x) <- union('pharmval',class(x))
   x
@@ -167,7 +168,7 @@ as.pharmval.NULL <- function(x,...){
 #' as.pharmevent(as.pharmval())
 
 as.pharmevent.pharmval <- function(x,...){
-  x %<>% select(-REPEATED, -EXCLUDED, -IMPUTED)
+  x %<>% select(-REPEATED, -EXCLUDED, -IMPUTED,-SUBTYPEC)
   x %<>% rename(
     # USUBJID = character(0),
     # STUDY = numeric(0),
@@ -204,6 +205,7 @@ as.pharmevent.pharmval <- function(x,...){
     # EXCLUSION = character(0),
     # IMPUTATION = character(0)
   )
+  x <- x[,names(as.pharmevent())]
   class(x) <- c('pharmevent','data.frame')
   x
 }
@@ -258,6 +260,8 @@ as.pharmval.pharmevent <- function(x,...){
   x$REPEATED = rep(NA, length=nrow(x)) %>% as.numeric
   x$EXCLUDED = rep(NA, length=nrow(x)) %>% as.character
   x$IMPUTED =  rep(NA, length=nrow(x)) %>% as.character
+  x$SUBTYPEC =  rep(NA, length=nrow(x)) %>% as.character
+  x <- x[,names(as.pharmval())]
   class(x) <- c('pharmval','data.frame')
   x
 }

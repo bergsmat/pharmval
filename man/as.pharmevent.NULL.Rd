@@ -18,6 +18,6 @@ pharmevent
 Creates an empty pharmevent table. Essentially, a constructor function.
 }
 \examples{
-as.pharmvevent()
+as.pharmevent()
 }
 

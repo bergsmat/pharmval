@@ -22,11 +22,14 @@
 #'  \item{5. Combinations of key values should be unique.}{
 #'  The role of key values is to uniquely identify records.  Duplicate keys are symptomatic of incorrect data; either at least one record communicates incorrect observations, or the implied object type has not been adequately distinguished.
 #'  }
-#'  \item{6. TYPEC and SUBTYPE may not be missing.}{
+#'  \item{6. TYPEC and SUBTYPEC may not be missing.}{
 #'  TYPEC is a user-defined classification of (the value of) VARIABLE, and SUBTYPE ranks VARIABLE within TYPEC.  TYPEC is not part of the object hierarchy: VARIABLE must have a globally-unique meaning, not merely unique within TYPEC.
 #'  }
-#'  \item{7. TYPEC and SUBTYPE must be consistent within value of VARIABLE.}{
-#'  TYPEC and SUBTYPE are, effectively, "properties" of the value of VARIABLE, and are therefore invariant.
+#'  \item{7. TYPEC and SUBTYPEC must be consistent within value of VARIABLE.}{
+#'  TYPEC and SUBTYPEC are, effectively, "properties" of the value of VARIABLE, and are therefore invariant.
+#'  }
+#'  \item{7. TYPE and SUBTYPE are numeric, and have a one-to-one correspondence with TYPEC and SUBTYPEC, respectively.}{
+#'  These give the same nesting information as TYPEC and SUBTYPEC; they are useful for creating default order in a presentation.
 #'  }
 #'  \item{8. VALUE and VALUEC may be missing.  If VALUEC is defined, VALUE should also be defined.}{
 #'  While object-appropriate keys are required for structural reasons, the pharmacometric value itself is not; there may be good reasons to report and describe missing values.
