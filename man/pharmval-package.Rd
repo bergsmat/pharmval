@@ -35,31 +35,31 @@ The paradigm invokes the concept of a pharmacometric analysis in the limited sen
  \item{7. TYPEC and SUBTYPEC must be consistent within value of VARIABLE.}{
  TYPEC and SUBTYPEC are, effectively, "properties" of the value of VARIABLE, and are therefore invariant.
  }
- \item{7. TYPE and SUBTYPE are numeric, and have a one-to-one correspondence with TYPEC and SUBTYPEC, respectively.}{
+ \item{8. TYPE and SUBTYPE are numeric, and have a one-to-one correspondence with TYPEC and SUBTYPEC, respectively.}{
  These give the same nesting information as TYPEC and SUBTYPEC; they are useful for creating default order in a presentation.
  }
- \item{8. VALUE and VALUEC may be missing.  If VALUEC is defined, VALUE should also be defined.}{
+ \item{9. VALUE and VALUEC may be missing.  If VALUEC is defined, VALUE should also be defined.}{
  While object-appropriate keys are required for structural reasons, the pharmacometric value itself is not; there may be good reasons to report and describe missing values.
 
 VALUE is numeric and may have no associated character representation.  VALUEC, however, is typically categorical, in which case VALUE is a numeric that supplies a default order.  Even for categorical variables that are not inherently ordered, some choice of order must pertain during presentation, and that choice may be captured in VALUE. Less clear is the case where VALUEC is arbitrary text, rather than categories.
  }
- \item{9. Values of TYPEC and VARIABLE should conform to SAS variable conventions.}{
+ \item{10. Values of TYPEC and VARIABLE should conform to SAS variable conventions.}{
  The FDA submission standards specify the SAS 5 naming conventions, including limit to 8 characters.  \pkg{pharmval} item names themselves are compliant. TYPEC and VARIABLE values should comply also, as these may be transformed into item names by means of some related workflow (such as creation of a NONMEM dataset).
  }
- \item{10. 'META' is a reserved value of VARIABLE.}{
+ \item{11. 'META' is a reserved value of VARIABLE.}{
  The \pkg{pharmval} paradigm relies on this value to distinguish metadata from primary data.
  }
- \item{11. If VARIABLE is 'META', VALUEC is a pharmval item name, such as VARIABLE.}{
+ \item{12. If VARIABLE is 'META', VALUEC is a pharmval item name, such as VARIABLE.}{
  The intent (see below) is to provide metadata about values in the identified column.
  }
- \item{12. Where VARIABLE is 'META', the effective key is TYPEC. This record is a declaration. All other records with the same value of TYPEC constitute a metadata table.}{
+ \item{13. Where VARIABLE is 'META', the effective key is TYPEC. This record is a declaration. All other records with the same value of TYPEC constitute a metadata table.}{
  TYPEC holds the name of an attribute of the related values in the specified column. Note that this creates a possible many-to-one relationship between TYPEC and, say, VARIABLE, which is prohibited above. Therefore, such restrictions are understood to apply only to primary (not meta) data records.
  }
- \item{13. For records of a metadata table, VARIABLE identifies a (possible) value -- the target -- from the column indicated in the declaration; TYPEC identifies an attribute of the target; VALUE and (optionally) VALUEC give the value of the attribute of the target.}{
+ \item{14. For records of a metadata table, VARIABLE identifies a (possible) value -- the target -- from the column indicated in the declaration; TYPEC identifies an attribute of the target; VALUE and (optionally) VALUEC give the value of the attribute of the target.}{
 
 For example, consider the SAS-compliant VARIABLE value DV.  To supply an informative label for DV, we create a declaration record with TYPEC:LABEL, VARIABLE:DV, VALUEC:VARIABLE. We then create a one-record metadata table with TYPEC:LABEL, VARIABLE:DV, VALUEC:'observed plasma drug concentration'.
 }
-\item{14.  A valid pharmval object may have zero records, or only metadata records, or only data records. Declarations may be present without corresponding metadata tables, but not vice versa. }{
+\item{15.  A valid pharmval object may have zero records, or only metadata records, or only data records. Declarations may be present without corresponding metadata tables, but not vice versa. }{
 Declarations are needed to unambiguously distinguish and characterize metadata tables.
 }
 }
