@@ -22,14 +22,14 @@
 #'  \item{5. Combinations of key values should be unique.}{
 #'  The role of key values is to uniquely identify records.  Duplicate keys are symptomatic of incorrect data; either at least one record communicates incorrect observations, or the implied object type has not been adequately distinguished.
 #'  }
-#'  \item{6. TYPEC and SUBTYPEC may not be missing.}{
-#'  TYPEC is a user-defined classification of (the value of) VARIABLE, and SUBTYPE ranks VARIABLE within TYPEC.  TYPEC is not part of the object hierarchy: VARIABLE must have a globally-unique meaning, not merely unique within TYPEC.
+#'  \item{6. TYPEC, TYPE, SUBTYPEC, and SUBTYPE may not be missing.}{
+#'  TYPE(C) is a user-defined classification of (the value of) VARIABLE, and SUBTYPE(C) ranks VARIABLE within TYPEC.  TYPEC is not part of the object hierarchy: VARIABLE must have a globally-unique meaning, not merely unique within TYPEC.
 #'  }
-#'  \item{7. TYPEC and SUBTYPEC must be consistent within value of VARIABLE.}{
-#'  TYPEC and SUBTYPEC are, effectively, "properties" of the value of VARIABLE, and are therefore invariant.
+#'  \item{7. TYPEC and SUBTYPEC must be consistent within value of VARIABLE, and vice versa.}{
+#'  TYPEC and SUBTYPEC are, effectively, "properties" of the value of VARIABLE, and are therefore invariant (and unique, in combination).
 #'  }
-#'  \item{8. TYPE and SUBTYPE are numeric, and have a one-to-one correspondence with TYPEC and SUBTYPEC, respectively.}{
-#'  These give the same nesting information as TYPEC and SUBTYPEC; they are useful for creating default order in a presentation.
+#'  \item{8. TYPE and TYPEC have a global one-to-one correspondence, while SUBTYPE and SUBTYPEC have a one-to-one correspondence within TYPE(c).}{
+#'  TYPE and SUBTYPE give the same classifications as TYPEC and SUBTYPEC, but are useful for creating default order in a presentation.
 #'  }
 #'  \item{9. VALUE and VALUEC may be missing.  If VALUEC is defined, VALUE should also be defined.}{
 #'  While object-appropriate keys are required for structural reasons, the pharmacometric value itself is not; there may be good reasons to report and describe missing values.
@@ -46,7 +46,7 @@
 #'  The intent (see below) is to provide metadata about values in the identified column.
 #'  }
 #'  \item{13. Where VARIABLE is 'META', the effective key is TYPEC. This record is a declaration. All other records with the same value of TYPEC constitute a metadata table.}{
-#'  TYPEC holds the name of an attribute of the related values in the specified column. Note that this creates a possible many-to-one relationship between TYPEC and, say, VARIABLE, which is prohibited above. Therefore, such restrictions are understood to apply only to primary (not meta) data records.
+#'  TYPEC holds the name of an attribute of the related values in the specified column. Note that this creates a possible many-to-one relationship between TYPEC and, say, VARIABLE, which is prohibited above. Therefore, the restrictions above are understood to apply only to primary (not meta) data records.
 #'  }
 #'  \item{14. For records of a metadata table, VARIABLE identifies a (possible) value -- the target -- from the column indicated in the declaration; TYPEC identifies an attribute of the target; VALUE and (optionally) VALUEC give the value of the attribute of the target.}{
 #'
